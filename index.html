@@ -46,19 +46,24 @@
                 button.classList.add('button');
                 button.innerText = num;
 
-                // 单击事件：选中当前数字
+                // 单击事件：切换高亮状态
                 button.addEventListener('click', () => {
-                    // 先清除其他按钮的高亮状态
-                    document.querySelectorAll('#cycle-sequence .button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    // 当前按钮设为高亮状态
-                    button.classList.add('active');
+                    if (button.classList.contains('active')) {
+                        button.classList.remove('active');
+                    } else {
+                        button.classList.add('active');
+                        button.classList.remove('lost');
+                    }
                 });
 
-                // 双击事件：设为“输了”状态
+                // 双击事件：切换“输了”状态
                 button.addEventListener('dblclick', () => {
-                    button.classList.add('lost');
+                    if (button.classList.contains('lost')) {
+                        button.classList.remove('lost');
+                    } else {
+                        button.classList.add('lost');
+                        button.classList.remove('active');
+                    }
                 });
 
                 cycleContainer.appendChild(button);
